@@ -14,8 +14,8 @@ describe('AppService', () => {
   });
 
   describe('getData', () => {
-    it('should return "Hello API"', () => {
-      expect(service.getData()).toEqual({ message: 'Hello API' });
+    it('should return "Backend connection established"', () => {
+      expect(service.getData()).toEqual({ message: 'Backend connection established' });
     });
   });
 });

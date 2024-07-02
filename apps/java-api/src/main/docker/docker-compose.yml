@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  oracle:
+    image: oracle/database:23c
+    container_name: oracle23c
+    ports:
+      - "1521:1521"
+    environment:
+      - ORACLE_SID=ORCLCDB
+      - ORACLE_PDB=ORCLPDB1
+      - ORACLE_PWD=T34mR4pt0r
