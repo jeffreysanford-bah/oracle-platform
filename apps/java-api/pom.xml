@@ -80,10 +80,26 @@
 			<artifactId>graphql-java-tools</artifactId>
 			<version>11.1.0</version>
 		</dependency>
-		<dependency> <!-- Docker Java API -->
+		<dependency>			<!-- Docker Java API -->
 			<groupId>com.github.docker-java</groupId>
 			<artifactId>docker-java</artifactId>
 			<version>3.0.14</version>
+		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava3</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>3.1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>2.2.21</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>3.12.4</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>

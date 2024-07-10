@@ -1,3 +1,4 @@
+package com.example.docker;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.InspectContainerResponse;
@@ -11,6 +12,7 @@ public class DockerManager {
 
     private DockerClient dockerClient;
 
+    
     public DockerManager() {
         dockerClient = DockerClientBuilder.getInstance().build();
     }

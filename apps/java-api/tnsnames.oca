@@ -1,0 +1,15 @@
+ORATST=
+(description=
+  (address_list=
+    (address = (protocol = TCP)(host = localhost)(port = 1521))
+  )
+  (connect_data = (service_name=orcl))
+)
+
+XE=
+(description=
+  (address_list=
+    (address = (protocol = TCP)(host = localhost)(port = 1521))
+  )
+  (connect_data = (service_name=xe))
+)

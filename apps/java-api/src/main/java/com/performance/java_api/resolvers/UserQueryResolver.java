@@ -14,10 +14,10 @@ public class UserQueryResolver implements GraphQLQueryResolver {
     }
 
     public List<User> getUsers() {
-        return userService.findAll();
+        return userService.getUsers();
     }
 
     public User getUserById(Long id) {
-        return userService.findById(id);
+        return userService.getUserById(id);
     }
 }
