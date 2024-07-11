@@ -1,0 +1,39 @@
+Instructions Docker, Oracle 21c
+
+In the exec terminal session:
+
+Login into your oracle database
+
+`sqlplus / as sysdba`
+
+Run this command to check of Oracle Dtaa Vault is added:
+
+
+`SELECT * FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
+`
+true means Oracle Data Vault is installed.
+
+SQL> `SELECT * FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
+`
+PARAMETER
+----------------------------------------------------------------
+VALUE                                                                CON_ID
+---------------------------------------------------------------- ----------
+Oracle Database Vault
+FALSE      
+
+ALTER the SYSTEM with dv doesnt work, this command does:
+
+`@?/rdbms/admin/catmac.sql USERS TEMP
+`
+
+
+Log Files
+
+SELECT name, value 
+FROM v$diag_info 
+WHERE name = 'Attention Log';
+
+
+
+
