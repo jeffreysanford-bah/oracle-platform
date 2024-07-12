@@ -8,32 +8,81 @@ Login into your oracle database
 
 Run this command to check of Oracle Dtaa Vault is added:
 
-
-`SELECT * FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
+`
+SELECT * FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
 `
 true means Oracle Data Vault is installed.
 
-SQL> `SELECT * FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
+SQL> `
+SELECT * FROM V$OPTION WHERE PARAMETER = 'Oracle Database Vault';
 `
-PARAMETER
-----------------------------------------------------------------
-VALUE                                                                CON_ID
----------------------------------------------------------------- ----------
+
 Oracle Database Vault
 FALSE      
 
 ALTER the SYSTEM with dv doesnt work, this command does:
 
-`@?/rdbms/admin/catmac.sql USERS TEMP
+`
+@?/rdbms/admin/catmac.sql USERS TEMP
 `
 
 
-Log Files
+
+Tried add this to the dbca.bat file, located in <Oracle>/bin folder:
+
+`dbca -J-Doracle.assistants.dbca.validate.ConfigurationParams=false`
+
+But it didnt work.  Throws errors currently in DOS that the switch constrution of dbca -J-D is jacked up.  morfe work needed here.
+
+To trun on log files
 
 SELECT name, value 
 FROM v$diag_info 
 WHERE name = 'Attention Log';
 
 
+`
+ALTER SESSION SET CONTAINER = CDB$ROOT;
+ALTER SYSTEM SET enable_DV = TRUE SCOPE=SPFILE;
+SHUTDOWN IMMEDIATE;
+STARTUP;
+`
+
+bash-4.2$ lsnrctl status
+
+LSNRCTL for Linux: Version 21.0.0.0.0 - Production on 12-JUL-2024 19:49:42
+
+Copyright (c) 1991, 2021, Oracle.  All rights reserved.
+
+Connecting to (DESCRIPTION=(ADDRESS=(PROTOCOL=IPC)(KEY=EXTPROC1)))
+STATUS of the LISTENER
+------------------------
+Alias                     LISTENER
+Version                   TNSLSNR for Linux: Version 21.0.0.0.0 - Production
+Start Date                12-JUL-2024 19:42:45
+Uptime                    0 days 0 hr. 6 min. 57 sec
+Trace Level               off
+Security                  ON: Local OS Authentication
+SNMP                      OFF
+Listener Parameter File   /opt/oracle/homes/OraDB21Home1/network/admin/listener.
+ora
+Listener Log File         /opt/oracle/diag/tnslsnr/2c3f6ff316fa/listener/alert/l
+og.xml
+Listening Endpoints Summary...
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(KEY=EXTPROC1)))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=0.0.0.0)(PORT=1521)))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcps)(HOST=2c3f6ff316fa)(PORT=5500))(Security=
+(my_wallet_directory=/opt/oracle/admin/ORCLCDB/xdb_wallet))(Presentation=HTTP)(S
+ession=RAW))
+Services Summary...
+Service "1d1327ae56a20e6de063020011ac9e33" has 1 instance(s).
+  Instance "ORCLCDB", status READY, has 1 handler(s) for this service...
+Service "ORCLCDB" has 1 instance(s).
+  Instance "ORCLCDB", status READY, has 1 handler(s) for this service...
+Service "ORCLCDBXDB" has 1 instance(s).
+  Instance "ORCLCDB", status READY, has 1 handler(s) for this service...
+Service "orclpdb1" has 1 instance(s).
+  Instance "ORCLCDB", status READY, has 1 handler(s) for this service...
+The command completed successfully
 
 

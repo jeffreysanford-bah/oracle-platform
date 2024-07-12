@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: oracle-db-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 1521
+    targetPort: 1521
+  - port: 5500
+    targetPort: 5500
+  selector:
+    app: oracle-db

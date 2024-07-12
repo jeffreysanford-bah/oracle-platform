@@ -1,0 +1,18 @@
+FROM oracle/database:21c-ee
+
+# Install Java 17
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the script to enable Data Vault
+COPY enable_dv.sql /opt/oracle/scripts/setup/
+
+# Set the working directory
+WORKDIR /opt/oracle/scripts/setup/
+
+# Run the script to enable Data Vault
+RUN sqlplus / as sysdba @enable_dv.sql
+
+# Expose necessary ports
+EXPOSE 1521 5500
